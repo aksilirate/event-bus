@@ -32,7 +32,7 @@ func has_main_screen() -> bool:
 
 
 func get_plugin_icon() -> Texture:
-	return preload("res://addons/EventBus/icon.png")
+	return preload("res://addons/EventBus/icons/icon.png")
 
 
 func get_plugin_name() -> String:
