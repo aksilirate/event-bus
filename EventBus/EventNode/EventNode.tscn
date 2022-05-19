@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/EventBus/EventNode/EventNode.gd" type="Script" id=1]
+[ext_resource path="res://addons/EventBus/icons/delete.png" type="Texture" id=2]
+
+[node name="EventNode" type="HBoxContainer"]
+margin_right = 370.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 370.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NameLabel" type="Label" parent="HBoxContainer"]
+margin_top = 25.0
+margin_right = 302.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+valign = 1
+
+[node name="DeleteButton" type="Button" parent="HBoxContainer"]
+margin_left = 306.0
+margin_right = 370.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_vertical = 3
+icon = ExtResource( 2 )
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
