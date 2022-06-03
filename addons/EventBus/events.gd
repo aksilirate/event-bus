@@ -1,10 +1,12 @@
 tool
 extends Node
 
-signal created_events_changed
+
+var event_data: _EventData = load(_EventData.PATH)
+var tag_data: _TagData = load(_TagData.PATH)
 
 
-var event_data: _EventData = preload("res://addons/EventBus/EventData.tres")
+
 
 
 
@@ -14,11 +16,11 @@ func _init() -> void:
 		add_user_signal(event_name)
 
 
+
 func add_event(event_name: String):
 	event_data.created_events.push_back(event_name)
 	property_list_changed_notify()
-	ResourceSaver.save("res://addons/EventBus/EventData.tres", event_data)
-	emit_signal("created_events_changed")
+	ResourceSaver.save(_EventData.PATH, event_data)
 
 
 
@@ -26,8 +28,21 @@ func add_event(event_name: String):
 func delete_event(event_name: String):
 	event_data.created_events.erase(event_name)
 	property_list_changed_notify()
-	ResourceSaver.save("res://addons/EventBus/EventData.tres", event_data)
-	emit_signal("created_events_changed")
+	ResourceSaver.save(_EventData.PATH, event_data)
+
+
+
+
+func add_tag(tag_name: String):
+	tag_data.created_tags.push_back(tag_name)
+	ResourceSaver.save(_TagData.PATH, event_data)
+
+
+
+func delete_tag(tag_name: String):
+	tag_data.created_tags.erase(tag_name)
+	ResourceSaver.save(_TagData.PATH, event_data)
+
 
 
 
@@ -46,6 +61,10 @@ func _get_property_list() -> Array:
 		var event_name: String = element
 		serialized_events.push_back({
 			"name": event_name,
+			"type": TYPE_STRING
+		})
+		serialized_events.push_back({
+			"name": "_on_" + event_name,
 			"type": TYPE_STRING
 		})
 

@@ -14,10 +14,22 @@ margin_right = 370.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/CenterContainer"]
+margin_top = 7.0
+margin_right = 50.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 50, 50 )
 
 [node name="NameLabel" type="Label" parent="HBoxContainer"]
+margin_left = 70.0
 margin_top = 25.0
-margin_right = 302.0
+margin_right = 286.0
 margin_bottom = 39.0
 size_flags_horizontal = 3
 valign = 1

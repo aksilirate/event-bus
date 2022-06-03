@@ -13,6 +13,17 @@ func _enter_tree() -> void:
 	
 	get_editor_interface().get_editor_viewport().add_child(event_editor)
 	
+	
+	var dir = Directory.new()
+	if not dir.file_exists(_EventData.PATH):
+		var event_data = _EventData.new()
+		ResourceSaver.save(_EventData.PATH, event_data)
+		
+	if not dir.file_exists(_TagData.PATH):
+		var event_data = _TagData.new()
+		ResourceSaver.save(_TagData.PATH, event_data)
+	
+	
 	make_visible(false)
 
 

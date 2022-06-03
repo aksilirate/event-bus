@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource( 1 )
-created_events = [  ]
+created_events = [ "level_ready", "unit_created" ]
