@@ -3,3 +3,4 @@ extends Resource
 
 
 export(Array) var created_events = []
+

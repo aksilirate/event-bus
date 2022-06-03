@@ -17,6 +17,7 @@ func _init() -> void:
 func add_event(event_name: String):
 	event_data.created_events.push_back(event_name)
 	property_list_changed_notify()
+	ResourceSaver.save("res://addons/EventBus/EventData.tres", event_data)
 	emit_signal("created_events_changed")
 
 
@@ -25,6 +26,7 @@ func add_event(event_name: String):
 func delete_event(event_name: String):
 	event_data.created_events.erase(event_name)
 	property_list_changed_notify()
+	ResourceSaver.save("res://addons/EventBus/EventData.tres", event_data)
 	emit_signal("created_events_changed")
 
 

@@ -1,10 +1,12 @@
 tool
 extends EditorPlugin
 
-var event_editor
+
+var event_editor: _EventEditor
 
 
 func _enter_tree() -> void:
+	connect("main_screen_changed", self, "_on_main_screen_changed")
 	add_autoload_singleton("Events", "res://addons/EventBus/events.gd")
 	
 	event_editor = preload("res://addons/EventBus/EventEditor/EventEditor.tscn").instance()
@@ -16,6 +18,11 @@ func _enter_tree() -> void:
 
 
 
+func _on_main_screen_changed(screen_name: String):
+	if screen_name == "Events":
+		event_editor.update_events()
+	
+
 
 
 
@@ -24,7 +31,8 @@ func _exit_tree() -> void:
 	
 	if event_editor:
 		event_editor.queue_free()
-
+	
+	
 
 func has_main_screen() -> bool:
 	return true
