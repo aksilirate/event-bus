@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource( 1 )
-created_events = [ "lol" ]
+created_events = [  ]

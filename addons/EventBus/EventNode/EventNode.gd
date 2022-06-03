@@ -1,6 +1,9 @@
 tool
 extends HBoxContainer
 
+signal event_deleted
+
+
 onready var name_label = $HBoxContainer/NameLabel
 
 export var event_name: String setget set_event_name
@@ -17,4 +20,5 @@ func update_name():
 
 
 func _on_DeleteButton_pressed() -> void:
-	Events.delete_event(event_name)
+	get_node("/root/Events").delete_event(event_name)
+	emit_signal("event_deleted")
