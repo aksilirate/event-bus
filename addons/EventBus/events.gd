@@ -12,8 +12,8 @@ var tag_data: _TagData = load(_TagData.PATH)
 
 func _init() -> void:
 	for element in event_data.created_events:
-		var event_name: String = element
-		add_user_signal(event_name)
+		var tagged_event: _TaggedEvent = element
+		add_user_signal(tagged_event.name)
 
 
 
