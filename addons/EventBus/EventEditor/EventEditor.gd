@@ -68,8 +68,10 @@ func update_events():
 	
 	for element in get_node("/root/Events").event_data.created_events:
 		var tagged_event: _TaggedEvent = element
+		
+		
 		if selected_tag != null:
-			if tagged_event.tag != selected_tag:
+			if tagged_event.tag.name != selected_tag.name:
 				continue
 			
 		var event_node = preload("res://addons/EventBus/EventNode/EventNode.tscn").instance()
@@ -82,7 +84,10 @@ func update_events():
 
 
 func update_tags():
-	all_tags.pressed = selected_tag == null
+	if all_tags != null:
+		all_tags.pressed = false
+		if selected_tag == null:
+			all_tags.pressed = true
 	
 	for element in tags_container.get_children():
 		var child: Node = element

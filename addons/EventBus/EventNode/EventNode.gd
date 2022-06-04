@@ -60,11 +60,13 @@ func update_tag_color():
 	if tag_color == null:
 		return
 	
-	
 	var tag_data = load(_TagData.PATH)
-	if tag_data.created_tags.has(tagged_event.tag):
-		tag_color.color = tagged_event.tag.color
-		return
+	for element in tag_data.created_tags:
+		var event_tag: _EventTag = element
+		if event_tag.name == tagged_event.tag.name:
+			tag_color.color = tagged_event.tag.color
+			return
+			
 	tag_color.color = Color.white
 
 
