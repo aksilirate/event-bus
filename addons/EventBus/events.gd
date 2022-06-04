@@ -55,7 +55,9 @@ func _get(property: String):
 		
 	if created_events_names.has(property):
 		return property
-	
+		
+	if property.begins_with("_on_"):
+		return property
 
 
 
