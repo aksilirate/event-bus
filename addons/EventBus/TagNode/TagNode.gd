@@ -71,7 +71,6 @@ func _on_DeleteButton_pressed() -> void:
 
 
 func _on_ColorPickerButton_color_changed(arg_color: Color) -> void:
-	print(event_tag)
 	if event_tag != null:
 		event_tag.color = arg_color
 		emit_signal("color_updated")
