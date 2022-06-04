@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=10 format=2]
 
 [ext_resource path="res://addons/EventBus/event_data.gd" type="Script" id=1]
 [ext_resource path="res://addons/EventBus/tagged_event.gd" type="Script" id=2]
@@ -24,6 +24,16 @@ script = ExtResource( 2 )
 name = "unit_created"
 tag = SubResource( 4 )
 
+[sub_resource type="Resource" id=6]
+script = ExtResource( 3 )
+name = "ally_unit_factory"
+color = Color( 0.305882, 0.290196, 0.819608, 1 )
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+name = "ally_unit_factory_ready"
+tag = SubResource( 6 )
+
 [resource]
 script = ExtResource( 1 )
-created_events = [ SubResource( 2 ), SubResource( 3 ) ]
+created_events = [ SubResource( 2 ), SubResource( 3 ), SubResource( 5 ) ]

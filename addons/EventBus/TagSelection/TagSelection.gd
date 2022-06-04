@@ -34,6 +34,9 @@ func update_name():
 
 
 func update_color():
+	if tag_color == null:
+		return
+	
 	if event_tag != null:
 		tag_color.color = event_tag.color
 		return

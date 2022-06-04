@@ -30,6 +30,9 @@ func _ready() -> void:
 func update_name():
 	if name_label == null:
 		return
+	
+	if tagged_event == null:
+		return
 		
 	name_label.text = tagged_event.name
 
