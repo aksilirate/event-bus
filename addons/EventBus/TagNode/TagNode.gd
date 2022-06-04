@@ -23,6 +23,7 @@ func set_pressed(value):
 
 func set_event_tag(value):
 	event_tag = value
+		
 	update_name()
 	update_color()
 
@@ -30,8 +31,7 @@ func set_event_tag(value):
 
 func _ready() -> void:
 	select_button.pressed = pressed
-	if event_tag == null:
-		color_picker_button.disabled = true
+	
 	update_name()
 	update_color()
 
@@ -45,6 +45,7 @@ func update_name():
 	if event_tag != null:
 		name_label.text = event_tag.name
 		return
+		
 	name_label.text = "all tags"
 
 
@@ -70,6 +71,7 @@ func _on_DeleteButton_pressed() -> void:
 
 
 func _on_ColorPickerButton_color_changed(arg_color: Color) -> void:
+	print(event_tag)
 	if event_tag != null:
 		event_tag.color = arg_color
 		emit_signal("color_updated")

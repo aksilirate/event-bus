@@ -5,3 +5,4 @@ const PATH: String = "res://addons/EventBus/TagData.tres"
 
 export(Array) var created_tags = []
 
+

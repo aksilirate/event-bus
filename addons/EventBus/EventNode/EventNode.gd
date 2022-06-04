@@ -28,6 +28,9 @@ func _ready() -> void:
 
 
 func update_name():
+	if name_label == null:
+		return
+		
 	name_label.text = tagged_event.name
 
 
@@ -54,10 +57,12 @@ func _on_tag_selected(selected_tag: _EventTag):
 
 
 func update_tag_color():
-	if get_node("/root/Events") == null:
+	if tag_color == null:
 		return
-		
-	if get_node("/root/Events").tag_data.created_tags.has(tagged_event.tag):
+	
+	
+	var tag_data = load(_TagData.PATH)
+	if tag_data.created_tags.has(tagged_event.tag):
 		tag_color.color = tagged_event.tag.color
 		return
 	tag_color.color = Color.white
