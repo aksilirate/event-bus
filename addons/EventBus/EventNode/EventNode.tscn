@@ -20,11 +20,51 @@ custom_constants/separation = 20
 margin_right = 50.0
 margin_bottom = 64.0
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/CenterContainer"]
+[node name="TagSelectButton" type="Button" parent="HBoxContainer/CenterContainer"]
 margin_top = 7.0
 margin_right = 50.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 50, 50 )
+
+[node name="TagSelectionDialog" type="WindowDialog" parent="HBoxContainer/CenterContainer/TagSelectButton"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -288.0
+margin_top = -204.0
+margin_right = 288.0
+margin_bottom = 204.0
+window_title = "SELECT TAG"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/TagSelectButton/TagSelectionDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/CenterContainer/TagSelectButton/TagSelectionDialog/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 556.0
+margin_bottom = 388.0
+
+[node name="TagSelectionContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/TagSelectButton/TagSelectionDialog/MarginContainer/ScrollContainer"]
+margin_right = 536.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TagColorRect" type="ColorRect" parent="HBoxContainer/CenterContainer"]
+margin_left = 7.0
+margin_top = 14.0
+margin_right = 42.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 35, 35 )
+mouse_filter = 2
 
 [node name="NameLabel" type="Label" parent="HBoxContainer"]
 margin_left = 70.0
@@ -44,4 +84,6 @@ icon = ExtResource( 2 )
 flat = true
 expand_icon = true
 
+[connection signal="pressed" from="HBoxContainer/CenterContainer/TagSelectButton" to="." method="_on_TagSelectButton_pressed"]
+[connection signal="about_to_show" from="HBoxContainer/CenterContainer/TagSelectButton/TagSelectionDialog" to="." method="_on_TagSelectionDialog_about_to_show"]
 [connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]

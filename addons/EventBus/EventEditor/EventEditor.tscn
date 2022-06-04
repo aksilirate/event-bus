@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/EventBus/EventEditor/EventEditor.gd" type="Script" id=1]
-[ext_resource path="res://addons/EventBus/EventTag/EventTag.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/EventBus/TagNode/TagNode.tscn" type="PackedScene" id=2]
 
 [node name="EventEditor" type="Control"]
 anchor_right = 1.0
@@ -79,17 +79,40 @@ margin_bottom = 24.0
 text = "create tag"
 
 [node name="EventTag" parent="HBoxContainer/VBoxContainer2" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+margin_left = 0.0
 margin_top = 44.0
 margin_right = 340.0
-margin_bottom = 108.0
+margin_bottom = 124.0
+
+[node name="SelectButton" parent="HBoxContainer/VBoxContainer2/EventTag" index="0"]
+margin_right = 340.0
+
+[node name="VBoxContainer" parent="HBoxContainer/VBoxContainer2/EventTag" index="1"]
+margin_right = 340.0
+
+[node name="ColorPickerButton" parent="HBoxContainer/VBoxContainer2/EventTag/VBoxContainer/CenterContainer" index="0"]
+disabled = true
+
+[node name="Label" parent="HBoxContainer/VBoxContainer2/EventTag/VBoxContainer" index="2"]
+margin_right = 320.0
+
+[node name="DeleteButton" parent="HBoxContainer/VBoxContainer2/EventTag/VBoxContainer" index="3"]
+visible = false
+margin_left = 276.0
+margin_right = 340.0
+
+[node name="AspectRatioContainer" parent="HBoxContainer/VBoxContainer2/EventTag/VBoxContainer" index="4"]
+margin_left = 340.0
+margin_right = 340.0
 
 [node name="TagsContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
-margin_top = 128.0
+margin_top = 144.0
 margin_right = 340.0
-margin_bottom = 128.0
+margin_bottom = 144.0
 
 [connection signal="text_entered" from="HBoxContainer/VBoxContainer/HBoxContainer/NewSignalLineEdit" to="." method="_on_NewSignalLineEdit_text_entered"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/CreateEventButton" to="." method="_on_CreateEventButton_pressed"]
+[connection signal="text_entered" from="HBoxContainer/VBoxContainer2/HBoxContainer/NewTagLineEdit" to="." method="_on_NewTagLineEdit_text_entered"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/HBoxContainer/CreateTagButton" to="." method="_on_CreateTagButton_pressed"]
+
+[editable path="HBoxContainer/VBoxContainer2/EventTag"]

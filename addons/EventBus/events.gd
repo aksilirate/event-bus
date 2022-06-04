@@ -17,38 +17,43 @@ func _init() -> void:
 
 
 
-func add_event(event_name: String):
-	event_data.created_events.push_back(event_name)
+func add_event(tagged_event: _TaggedEvent):
+	event_data.created_events.push_back(tagged_event)
 	property_list_changed_notify()
 	ResourceSaver.save(_EventData.PATH, event_data)
 
 
 
 
-func delete_event(event_name: String):
-	event_data.created_events.erase(event_name)
+func delete_event(tagged_event: _TaggedEvent):
+	event_data.created_events.erase(tagged_event)
 	property_list_changed_notify()
 	ResourceSaver.save(_EventData.PATH, event_data)
 
 
 
 
-func add_tag(tag_name: String):
-	tag_data.created_tags.push_back(tag_name)
-	ResourceSaver.save(_TagData.PATH, event_data)
+func add_tag(event_tag: _EventTag):
+	tag_data.created_tags.push_back(event_tag)
+	ResourceSaver.save(_TagData.PATH, tag_data)
 
 
 
-func delete_tag(tag_name: String):
-	tag_data.created_tags.erase(tag_name)
-	ResourceSaver.save(_TagData.PATH, event_data)
+func delete_tag(event_tag: _EventTag):
+	tag_data.created_tags.erase(event_tag)
+	ResourceSaver.save(_TagData.PATH, tag_data)
 
 
 
 
 
 func _get(property: String):
-	if event_data.created_events.has(property):
+	var created_events_names: Array
+	for element in event_data.created_events:
+		var tagged_event: _TaggedEvent = element
+		created_events_names.push_back(tagged_event.name)
+		
+	if created_events_names.has(property):
 		return property
 	
 
@@ -57,7 +62,14 @@ func _get(property: String):
 func _get_property_list() -> Array:
 	var serialized_events: Array
 	
+	
+	var created_events_names: Array
 	for element in event_data.created_events:
+		var tagged_event: _TaggedEvent = element
+		created_events_names.push_back(tagged_event.name)
+	
+	
+	for element in created_events_names:
 		var event_name: String = element
 		serialized_events.push_back({
 			"name": event_name,

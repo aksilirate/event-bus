@@ -18,11 +18,13 @@ func _enter_tree() -> void:
 	if not dir.file_exists(_EventData.PATH):
 		var event_data = _EventData.new()
 		ResourceSaver.save(_EventData.PATH, event_data)
+		get_node("/root/Events").event_data = load(_EventData.PATH)
+		
 		
 	if not dir.file_exists(_TagData.PATH):
-		var event_data = _TagData.new()
-		ResourceSaver.save(_TagData.PATH, event_data)
-	
+		var tag_data = _TagData.new()
+		ResourceSaver.save(_TagData.PATH, tag_data)
+		get_node("/root/Events").tag_data = load(_TagData.PATH)
 	
 	make_visible(false)
 
@@ -32,6 +34,7 @@ func _enter_tree() -> void:
 func _on_main_screen_changed(screen_name: String):
 	if screen_name == "Events":
 		event_editor.update_events()
+		event_editor.update_tags()
 	
 
 
